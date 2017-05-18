@@ -6,7 +6,7 @@
 
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Bumpy shoppers | Add category</title>
+		<title>Dashboard | Add category</title>
 		<meta name="description" content="Premium HTML5 Template">
 		<meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
 		<meta name="author" content="Amazyne Themes">
@@ -81,7 +81,7 @@
 								<!-- Logo -->
 
 								<a class="logo" href="index.html">
-									<img alt="image" src="images/bumpy-admin-logo.png" />
+									<img alt="image" src="images/bumpy-admin-bumpy-admin-logo.png" />
 								</a><!-- End of Logo -->
 							</div>
 
@@ -156,7 +156,7 @@
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-presentation"></i>Dashboard</a>
 
                   </li>
-                  <li class="menu-heading">Features</li>
+                  <li class="menu-heading">Menu</li>
                   <li class="with-dropdown">
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Categories <span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
@@ -243,11 +243,11 @@
               							<input type="file" class="form-control" name="image">
 										<label class="control-label">Description</label>
 										<textarea class="form-control" name="desc" id="cat_desc" rows="4" ></textarea>
-									
+
 
                        					<br>
 										<button type="submit" class="btn btn-default" >Submit</button>
-						
+
 							</form><!-- End of Form with Tooltip Alerts -->
 						</div>
 					</div>
@@ -275,64 +275,6 @@
 
 		<!-- Loading Page's Scripts -->
 
-		<script src="pages/formsValidator.min.js"></script>
-<script src="third-party/dropzone/js/dropzone.min.js"></script>
-
-    <script>
-    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-      Dropzone.autoDiscover = false;
-      var previewNode = document.querySelector("#template");
-      previewNode.id = "";
-      var previewTemplate = previewNode.parentNode.innerHTML;
-      previewNode.parentNode.removeChild(previewNode);
-
-      var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-        url: "/php/contact.php", // Set the url
-        thumbnailWidth: 80,
-        thumbnailHeight: 80,
-        parallelUploads: 20,
-        previewTemplate: previewTemplate,
-        autoQueue: false, // Make sure the files aren't queued until manually added
-        previewsContainer: "#previews", // Define the container to display the previews
-        clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-      });
-
-      myDropzone.on("addedfile", function(file) {
-        // Hookup the start button
-        file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
-      });
-
-      // Update the total progress bar
-      myDropzone.on("totaluploadprogress", function(progress) {
-        document.querySelector(".progress-bar").style.width = progress + "%";
-      });
-
-      myDropzone.on("sending", function(file) {
-        // Show the total progress bar when upload starts
-        document.querySelector(".progress-bar").style.opacity = "1";
-        // And disable the start button
-        file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
-      });
-
-      // Hide the total progress bar when nothing's uploading anymore
-      myDropzone.on("queuecomplete", function(progress) {
-        document.querySelector(".progress-bar").style.opacity = "0";
-      });
-
-      // Setup the buttons for all transfers
-      // The "add files" button doesn't need to be setup because the config
-      // `clickable` has already been specified.
-      document.querySelector(".start").onclick = function() {
-        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-      };
-      document.querySelector(".cancel").onclick = function() {
-        myDropzone.removeAllFiles(true);
-      };
-      $(function(){
-        jQuery('#my-awesome-dropzone').attr('action','/php/contact.php');
-      });
-    </script>
-        <!-- Loading Theme's Scripts -->
 
         <script src="js/scripts.js"></script>
         <script src="js/custom.js"></script>
@@ -354,10 +296,10 @@
 	data['desc'] = document.getElementById('cat_desc').value;
 	function addCategory(){
 		SDK.addData('orders','category', data, function(){
-			document.getElementsByClassName('dv-notify').value = 'Success'; 
-		});	
+			document.getElementsByClassName('dv-notify').value = 'Success';
+		});
 	}
-	
+
 </script>
 
     </body>
