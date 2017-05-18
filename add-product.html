@@ -217,8 +217,8 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="admin-content">
-							<div class="dv-notify-success alert alert-success"></div>
-							<div class="dv-notify-failed alert alert-danger"></div>
+							<div class="dv-notify-success alert alert-success">Product added successfully</div>
+							<div class="dv-notify-failed alert alert-danger">Product could not be added</div>
 							<h4 class="text-center">Add products to category</h4>
 							<p class="mar-bot-30 text-center">The folloring form outputs the validation errors in a tooltip</p>
 
@@ -226,12 +226,10 @@
 
 							<form class=" dv-add-oneto:orders:stock">
 										<label class="control-label">Select a Category</label>
-                     <select class="form-control" id="orders_category_id">
-                        <option value="0" selected>All Categories</option>
-                        <option value="1">Category one</option>
-                        <option value="2">Category two</option>
-                        <option value="3">Category three</option>
-                        <option value="4">Category four</option>
+                     <select class="form-control cat" id="orders_category_id">
+                     	<div id="cat">
+                        <option v-for="category in categories" v-bind:value="category.id">{{category.name}}</option>
+                     	</div>
                     </select>
 										<label class="control-label">Product Name</label>
 										<input type="text" class="form-control" id="name"/>
@@ -244,6 +242,9 @@
 
                     <label class="control-label">Original price</label>
                     <input type="number" class="form-control"  id="origPrice" />
+
+                      <label class="control-label">Image</label>
+                    <input type="file" class="form-control"  id="image" /><br>
                    				<button type="submit" onclick="addProduct(event)" class="btn btn-theme">Submit</button>
 							</form><!-- End of Form with Tooltip Alerts -->
 						</div>
@@ -286,18 +287,18 @@
 	function addProduct(event) {
 		event.preventDefault();
 		var data = {};
-		var keys = ['orders_category_id', 'name', 'long_desc', 'short_desc', 'clubPrice', 'origPrice'];
+		var keys = ['orders_category_id', 'name', 'long_desc', 'short_desc', 'clubPrice', 'origPrice', 'image'];
 		for(var i= 0; i < keys.length; i++) {
 			data[keys[i]] = document.getElementById(keys[i]).value;
 		}
 		SDK.addData('orders', 'stock', data, function(resp){
-			if(resp.payload.status_code == 609 )
+			if(resp.status_code == 609 )
 			{
 				for(var i= 0; i < keys.length; i++) {
 					 document.getElementById(keys[i]).value ="";
 				}
-					document.getElementsByClassName('dv-notify-failed')[0].style.display = 'block';
-					document.getElementsByClassName('dv-notify-failed')[0].value = "Product added successfully";
+					document.getElementsByClassName('dv-notify-success')[0].style.display = 'block';
+					document.getElementsByClassName('dv-notify-success')[0].value = "Product added successfully";
 			} else {
 					document.getElementsByClassName('dv-notify-failed')[0].style.display = 'block';
 					document.getElementsByClassName('dv-notify-failed')[0].value = "Product Could not be added";
@@ -306,6 +307,25 @@
 	}
 	console.log($);
 </script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+	new Vue({
+		"el":".cat",
+		data:{"categories":[]},
+		mounted(){
+			var vueObj = this;
+			SDK.queryData('orders', 'category', {}, function(resp){
+				if(resp.payload.results.length > 0){
+					var cats = resp.payload.results;
+					for(var i=0; i<cats.length; i++) {
+						vueObj.categories.push(resp.payload.results[i]);
+					}
+				}
+				
+			})
+		}
 
+	})
+</script>
     </body>
 </html>
