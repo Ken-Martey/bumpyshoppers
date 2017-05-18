@@ -244,7 +244,14 @@
                     <input type="number" class="form-control"  id="origPrice" />
 
                       <label class="control-label">Image</label>
-                    <input type="file" class="form-control"  id="image" /><br>
+                    <input type="file" class="form-control"  id="image" />
+
+                    <label class="control-label">Mark as Special Offer</label>	
+                     <select class="form-control cat" id="on_offer">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br>
                    				<button type="submit" onclick="addProduct(event)" class="btn btn-theme">Submit</button>
 							</form><!-- End of Form with Tooltip Alerts -->
 						</div>
@@ -284,10 +291,36 @@
 
 
 <script>
+function setImage() {
+	function getBase64(file) {
+   var reader = new FileReader();
+   reader.readAsDataURL(file);
+   reader.onload = function () {
+     var image = reader.result;
+     console.log(image);
+   };
+   reader.onerror = function (error) {
+     console.log('Error: ', error);
+   };
+}
+
+	var file = document.querySelector('#image').files[0];
+	console.log("file", file);
+	getBase64(file); // prints the base64 string
+  
+  
+}
+
+document.getElementById("image").addEventListener("change", setImage);
+
+
+
 	function addProduct(event) {
 		event.preventDefault();
 		var data = {};
-		var keys = ['orders_category_id', 'name', 'long_desc', 'short_desc', 'clubPrice', 'origPrice', 'image'];
+		var keys = ['orders_category_id', 'name', 'long_desc',
+		 'short_desc', 'clubPrice', 'origPrice', 'image', 'on_offer'];
+
 		for(var i= 0; i < keys.length; i++) {
 			data[keys[i]] = document.getElementById(keys[i]).value;
 		}
