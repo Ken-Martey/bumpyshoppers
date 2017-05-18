@@ -1,19 +1,18 @@
 /********************************************************************
 
-Nucleus Admin's JavaScript Document for Google Chart Examples
-Created By: Amazyne Themes
+
 
 *********************************************************************/
 
 
 $(function() {
-	
+
 	/* Loading Core Package */
-	
+
 	google.charts.load('current', {packages: ['corechart']});
-	
+
 	/* Area Chart */
-	
+
 	function drawAreaChart() {
 		var data = google.visualization.arrayToDataTable([
 		  ['Year', 'Sales', 'Expenses'],
@@ -37,9 +36,9 @@ $(function() {
 		var chart = new google.visualization.AreaChart(document.getElementById('gc-area'));
 		chart.draw(data, options);
 	}
-	
+
 	/* Bar Chart */
-	
+
 	function drawBarChart() {
 
 		var data = google.visualization.arrayToDataTable([
@@ -70,11 +69,11 @@ $(function() {
 
 		var chart = new google.visualization.BarChart(document.getElementById('gc-bar'));
 		chart.draw(data, options);
-		
+
 	}
-	
+
 	/* Combo Chart */
-	
+
 	function drawComboChart() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
@@ -104,7 +103,7 @@ $(function() {
 	}
 
 	/* Histogram */
-	
+
 	function drawHistogram() {
 		var data = google.visualization.arrayToDataTable([
 			['Dinosaur', 'Length'],
@@ -156,9 +155,9 @@ $(function() {
 		var chart = new google.visualization.Histogram(document.getElementById('gs-histogram'));
 		chart.draw(data, options);
 	}
-	
+
 	/* Curve Chart */
-	
+
 	function drawCurveChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Year', 'Sales', 'Expenses'],
@@ -187,9 +186,9 @@ $(function() {
 		var chart = new google.visualization.LineChart(document.getElementById('gc-curve'));
 		chart.draw(data, options);
 	}
-	
+
 	/* Line Chart */
-	
+
 	function drawLineChart() {
 		var data = new google.visualization.DataTable();
 		data.addColumn('number', 'X');
@@ -228,9 +227,9 @@ $(function() {
 		var chart = new google.visualization.LineChart(document.getElementById('gc-line'));
 		chart.draw(data, options);
 	}
-	
+
 	/* Column Chart */
-	  
+
 	function drawMultSeries() {
 		var data = new google.visualization.DataTable();
 		data.addColumn('timeofday', 'Time of Day');
@@ -273,9 +272,9 @@ $(function() {
 		var chart = new google.visualization.ColumnChart(document.getElementById('gc-column'));
 		chart.draw(data, options);
     }
-	
+
 	/* Pie Chart */
-	
+
 	function drawPieChart() {
 
 		var data = google.visualization.arrayToDataTable([
@@ -299,9 +298,9 @@ $(function() {
 		var chart = new google.visualization.PieChart(document.getElementById('gc-pie'));
 		chart.draw(data, options);
 	}
-	
+
 	/* 3D Pie Chart */
-	
+
 	function draw3DPieChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Task', 'Hours per Day'],
@@ -325,9 +324,9 @@ $(function() {
 		var chart = new google.visualization.PieChart(document.getElementById('gc-3d-pie'));
 			chart.draw(data, options);
 	}
-	
+
 	/* Donut Chart */
-	
+
 	function drawDonutChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Task', 'Hours per Day'],
@@ -351,9 +350,9 @@ $(function() {
 		var chart = new google.visualization.PieChart(document.getElementById('gc-donut'));
 		chart.draw(data, options);
 	}
-	
+
 	/* Exploded Pie Chart */
-	
+
 	function drawExplodedPieChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Language', 'Speakers (in millions)'],
@@ -384,50 +383,50 @@ $(function() {
 		var chart = new google.visualization.PieChart(document.getElementById('gc-exploded-pie'));
 		chart.draw(data, options);
 	}
-	
+
 	/* Draw Area Chart */
-	
+
 	google.charts.setOnLoadCallback(drawAreaChart);
-	
+
 	/* Draw Bar Chart */
-	
+
 	google.charts.setOnLoadCallback(drawBarChart);
-	
+
 	/* Draw Combo Chart */
-	
+
 	google.charts.setOnLoadCallback(drawComboChart);
-	
+
 	/* Draw Histogram */
-	
+
 	google.charts.setOnLoadCallback(drawHistogram);
-	
+
 	/* Draw Curve Chart */
-	
+
 	google.charts.setOnLoadCallback(drawCurveChart);
-	
+
 	/* Draw Line Chart */
-	
+
 	google.charts.setOnLoadCallback(drawLineChart);
-	
+
 	/* Draw Multi Series Chart */
-	
+
 	google.charts.setOnLoadCallback(drawMultSeries);
-	
+
 	/* Draw Pie Chart */
-	
+
 	google.charts.setOnLoadCallback(drawPieChart);
-	
+
 	/* Draw 3D Pie Chart */
-	
+
 	google.charts.setOnLoadCallback(draw3DPieChart);
-	
+
 	/* Draw Donut Chart */
-	
+
 	google.charts.setOnLoadCallback(drawDonutChart);
-	
+
 	/* Draw Exploded Pie Chart */
-	
+
 	google.charts.setOnLoadCallback(drawExplodedPieChart);
-  
-	
+
+
 });
