@@ -235,11 +235,12 @@
 					</div>
 				</div>
 			</section><!-- End of Page Header -->
-			<div class="dv-notify"></div>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="admin-content">
+							<div class="dv-notify-success alert alert-success"></div>
+							<div class="dv-notify-failed alert alert-failed"></div>
 							<h4 class="text-center">Add products to category</h4>
 							<p class="mar-bot-30 text-center">The folloring form outputs the validation errors in a tooltip</p>
 
@@ -247,7 +248,7 @@
 
 							<form class=" dv-add-oneto:orders:stock">
 										<label class="control-label">Select a Category</label>
-                     <select class="form-control" name="orders_category_id">
+                     <select class="form-control" id="orders_category_id">
                         <option value="0" selected>All Categories</option>
                         <option value="1">Category one</option>
                         <option value="2">Category two</option>
@@ -255,16 +256,17 @@
                         <option value="4">Category four</option>
                     </select>
 										<label class="control-label">Product Name</label>
-										<input type="text" class="form-control" name="name"/>
+										<input type="text" class="form-control" id="name"/>
 										<label class="control-label">Short description</label>
-                    <textarea class="form-control" name="short_desc" rows="4" ></textarea>
+                    <textarea class="form-control" id="short_desc" rows="4" ></textarea>
 										<label class="control-label">Long description</label>
-                    <textarea class="form-control" name="long_desc" rows="4" ></textarea>
+                    <textarea class="form-control" id="long_desc" rows="4" ></textarea>
 										<label class="control-label">Club price</label>
-                    <input type="text" class="form-control"  name="clubPrice" />
+                    <input type="number" class="form-control"  id="clubPrice" />
 								
                     <label class="control-label">Original price</label>
-                   				<button type="submit" class="btn btn-theme">Submit</button>
+                    <input type="number" class="form-control"  id="origPrice" />
+                   				<button type="submit" onclick="addProduct(event)" class="btn btn-theme">Submit</button>
 							</form><!-- End of Form with Tooltip Alerts -->
 						</div>
 					</div>
@@ -283,6 +285,8 @@
 		</footer><!-- End of Footer -->
 
         <!-- Loading Third Party Scripts -->
+
+<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 
 		<script src="third-party/jquery/jquery.min.js"></script>
 		<script src="third-party/easing/js/jquery.easings.min.js"></script>
@@ -306,20 +310,32 @@
         <script src="js/scripts.js"></script>
         <script src="js/custom.js"></script>
 
-		<script>
-			$(function(){
-				$('.slim-scroll-div').slimscroll({
-					height: 'auto'
-				})
-			});
-		</script>
+		
 
-        <!-- Google Analytics Tracking -->
+<script>
+	function addProduct(event) {
+		event.preventDefault();
+		var data = {};
+		var keys = ['orders_category_id', 'name', 'long_desc', 'short_desc', 'clubPrice', 'origPrice'];
+		for(var i= 0; i < keys.length; i++) {
+			data[keys[i]] = document.getElementById(keys[i]).value;
+		}
+		SDK.addData('orders', 'stock', data, function(resp){
+			if(resp.payload.status_code == 609 )
+			{
+				for(var i= 0; i < keys.length; i++) {
+					 document.getElementById(keys[i]).value ="";
+				}
+					document.getElementsByClassName('dv-notify-failed')[0].style.display = 'block';
+					document.getElementsByClassName('dv-notify-failed')[0].value = "Product added successfully";
+			} else {
+					document.getElementsByClassName('dv-notify-failed')[0].style.display = 'block';
+					document.getElementsByClassName('dv-notify-failed')[0].value = "Product Could not be added";
+			}
+		});
+	}
+	console.log($);
+</script>
 
-       <script type="text/javascript">
-       		// Vue({
-       		// 	el:"#cats"
-       		// })
-       </script>
     </body>
 </html>
