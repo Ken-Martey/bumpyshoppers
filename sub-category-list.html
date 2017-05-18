@@ -443,42 +443,17 @@
                                     <thead>
                                         <tr>
                                           <th>Name</th>
-                                          <th>Position</th>
-                                          <th>Office</th>
-                                          <th>Age</th>
-                                          <th>Start date</th>
-                      <th>Salary</th>
-                                          <th>Action</th>
+                                          <th>Desc</th>
+                                          <th>Image</th>
+                                          <th>Category</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="dv-get-all:orders:sub_category">
                                         <tr>
-                                          <td>Tiger Nixon</td>
-                                          <td>System Architect</td>
-                                          <td>Edinburgh</td>
-                                          <td>61</td>
-                                          <td>2011/04/25</td>
-                                          <td>$320,800</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
-                                        </tr>
-
-                                        <tr>
-                                          <td>Sakura Yamamoto</td>
-                                          <td>Support Engineer</td>
-                                          <td>Tokyo</td>
-                                          <td>37</td>
-                                          <td>2009/08/19</td>
-                                          <td>$139,575</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Thor Walton</td>
-                                          <td>Developer</td>
-                                          <td>New York</td>
-                                          <td>61</td>
-                                          <td>2013/08/11</td>
-                                          <td>$98,540</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
+                                          <td class="var-name">...</td>
+                                          <td class="var-desc">...</td>
+                                          <td><img src="" class="var-image" width="30" height="30"></td>
+                                          <td class="var-category-name">...</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -547,17 +522,27 @@
 
         <!-- Google Analytics Tracking -->
 
-        <script>
+<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+<script src="https://unpkg.com/vue"></script>
+<script>
+  new Vue({
+    "el":".cat",
+    data:{"categories":[]},
+    mounted(){
+      var vueObj = this;
+      SDK.queryData('orders', 'category', {}, function(resp){
+        if(resp.payload.results.length > 0){
+          var cats = resp.payload.results;
+          for(var i=0; i<cats.length; i++) {
+            vueObj.categories.push(resp.payload.results[i]);
+          }
+        }
 
-        ga('create', 'UA-58677854-6', 'auto');
-        ga('send', 'pageview');
+      })
+    }
 
-        </script>
-
+  })
+</script>
     </body>
 </html>
