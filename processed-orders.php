@@ -7,9 +7,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Dashboard | Processed orders </title>
-		<meta name="description" content="Premium HTML5 Template">
-		<meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
-		<meta name="author" content="Amazyne Themes">
+		<meta name="description" content="Bumpy shoppers">
+		<meta name="keywords" content="Bumpy shoppers">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 		<!-- Favicon -->
@@ -152,16 +151,11 @@
 
                       <li><a href="add-product.html">Add Product </a></li>
                       <li><a href="product-list.html">List of Products </a></li>
+                      <li><a href="special-offers-list.html">List of Special offers </a></li>
 
                     </ul>
                   </li>
-                  <li class="with-dropdown">
-                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-linegraph"></i>Special offers <span class="dropdown-icon"></span></a>
-                    <ul class="menu-dropdown collapse">
-                      <li><a href="add-special-offers.html">Add special offer</a></li>
-                      <li><a href="special-offers-list.html">List of Special offers </a></li>
-                    </ul>
-                  </li>
+
 <li class="with-dropdown">
                     <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
                     <ul class="menu-dropdown collapse">

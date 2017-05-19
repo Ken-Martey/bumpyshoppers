@@ -15,9 +15,8 @@ if(!isset($_SESSION['admin_login'])){
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Dashboard | Add product</title>
-		<meta name="description" content="Premium HTML5 Template">
-		<meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
-		<meta name="author" content="Amazyne Themes">
+		<meta name="description" content="Bumpy shoppers">
+		<meta name="keywords" content="Bumpy shoppers">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 		<!-- Favicon -->
@@ -172,16 +171,11 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.html">Add Product </a></li>
                       <li><a href="product-list.html">List of Products </a></li>
+                      <li><a href="special-offers-list.html">List of Special offers </a></li>
 
                     </ul>
                   </li>
-                  <li class="with-dropdown">
-                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-linegraph"></i>Special offers <span class="dropdown-icon"></span></a>
-                    <ul class="menu-dropdown collapse">
-                      <li><a href="add-special-offers.html">Add special offer</a></li>
-                      <li><a href="special-offers-list.html">List of Special offers </a></li>
-                    </ul>
-                  </li>
+
 
                   <li class="with-dropdown">
                     <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
@@ -240,7 +234,8 @@ if(!isset($_SESSION['admin_login'])){
                      	</div>
                     </select>
 										<label class="control-label">Product Name</label>
-										<input type="text" class="form-control" id="name"/>
+                    <input type="text" class="form-control" id="name"/>
+										<input type="hidden" class="form-control" id="image"/>
 										<label class="control-label">Short description</label>
                     <textarea class="form-control" id="short_desc" rows="4" ></textarea>
 										<label class="control-label">Long description</label>
@@ -252,9 +247,9 @@ if(!isset($_SESSION['admin_login'])){
                     <input type="number" class="form-control"  id="origPrice" />
 
                       <label class="control-label">Image</label>
-                    <input type="file" class="form-control"  id="image" />
+                    <input type="file" class="form-control"  id="image_url" />
 
-                    <label class="control-label">Mark as Special Offer</label>	
+                    <label class="control-label">Mark as Special Offer</label>
                      <select class="form-control cat" id="on_offer">
                         <option value="0">No</option>
                         <option value="1">Yes</option>
@@ -303,23 +298,25 @@ function setImage() {
 	function getBase64(file) {
    var reader = new FileReader();
    reader.readAsDataURL(file);
-   reader.onload = function () {
-     var image = reader.result;
-     console.log(image);
-   };
+     reader.addEventListener('load', function(){
+          var image = reader.result;
+          document.getElementById('image').value = image;
+          console.log(image);
+
+      }, false)
    reader.onerror = function (error) {
      console.log('Error: ', error);
    };
 }
 
-	var file = document.querySelector('#image').files[0];
+	var file = document.querySelector('#image_url').files[0];
 	console.log("file", file);
 	getBase64(file); // prints the base64 string
-  
-  
+
+
 }
 
-document.getElementById("image").addEventListener("change", setImage);
+document.getElementById("image_url").addEventListener("change", setImage);
 
 
 
@@ -331,6 +328,7 @@ document.getElementById("image").addEventListener("change", setImage);
 
 		for(var i= 0; i < keys.length; i++) {
 			data[keys[i]] = document.getElementById(keys[i]).value;
+      console.log(data);
 		}
 		SDK.addData('orders', 'stock', data, function(resp){
 			if(resp.status_code == 609 )
@@ -362,7 +360,7 @@ document.getElementById("image").addEventListener("change", setImage);
 						vueObj.categories.push(resp.payload.results[i]);
 					}
 				}
-				
+
 			})
 		}
 

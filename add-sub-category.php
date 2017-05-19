@@ -15,9 +15,8 @@ if(!isset($_SESSION['admin_login'])){
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Dashboard | Add sub category</title>
-		<meta name="description" content="Premium HTML5 Template">
-		<meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
-		<meta name="author" content="Amazyne Themes">
+		<meta name="description" content="Bumpy shoppers">
+		<meta name="keywords" content="Bumpy shoppers">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 		<!-- Favicon -->
@@ -166,16 +165,11 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.html">Add Product </a></li>
                       <li><a href="product-list.html">List of Products </a></li>
+                      <li><a href="special-offers-list.html">List of Special offers </a></li>
 
                     </ul>
                   </li>
-                  <li class="with-dropdown">
-                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-linegraph"></i>Special offers <span class="dropdown-icon"></span></a>
-                    <ul class="menu-dropdown collapse">
-                      <li><a href="add-special-offers.html">Add special offer</a></li>
-                      <li><a href="special-offers-list.html">List of Special offers </a></li>
-                    </ul>
-                  </li>
+
 <li class="with-dropdown">
                     <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
                     <ul class="menu-dropdown collapse">
@@ -219,30 +213,30 @@ if(!isset($_SESSION['admin_login'])){
 							<p class="mar-bot-30 text-center">Choose a main category and add a sub category</p>
 
 							<!-- Form with Tooltip Alerts -->
-
-							<form id="tooltipForm" method="post" action="form-tooltip-alerts.html#" class="row form-theme">
+              <div class="dv-notify-success alert alert-success">Sub category added successfully </div>
+              <div class="dv-notify-success alert alert-failed">Sub category could not be added </div>
+							<form  class="row form-theme dv-add-oneto:orders:sub_category">
               <div class="col-sm-12">
                   <div class="form-group">
                     <label class="control-label">Choose a category</label>
-                     <select class="form-control">
-                        <option value="0" selected>All Categories</option>
-                        <option value="1">Category one</option>
-                        <option value="2">Category two</option>
-                        <option value="3">Category three</option>
-                        <option value="4">Category four</option>
+                      <select class="form-control cat" id="orders_category_id">
+                      <div id="cat">
+                        <option v-for="category in categories" v-bind:value="category.id">{{category.name}}</option>
+                      </div>
                     </select>
+
                   </div>
                 </div>
 								<div class="col-sm-12">
 									<div class="form-group">
 										<label class="control-label">Add sub category Name</label>
-										<input type="text" class="form-control"/>
+										<input type="text" name="name" class="form-control"/>
 									</div>
 								</div>
 								<div class="col-sm-12">
 									<div class="form-group">
 										<label class="control-label">Description</label>
-										<textarea class="form-control" name="message" rows="4" ></textarea>
+										<textarea class="form-control" name="desc" rows="4" ></textarea>
 									</div>
 								</div>
 								<div class="col-sm-12">
@@ -283,7 +277,7 @@ if(!isset($_SESSION['admin_login'])){
     // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
       Dropzone.autoDiscover = false;
       var previewNode = document.querySelector("#template");
-      previewNode.id = "";
+      //previewNode.id = "";
       var previewTemplate = previewNode.parentNode.innerHTML;
       previewNode.parentNode.removeChild(previewNode);
 
@@ -347,18 +341,28 @@ if(!isset($_SESSION['admin_login'])){
 		</script>
 
         <!-- Google Analytics Tracking -->
+<script src="https://unpkg.com/vue"></script>
 
-        <script>
+<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
+<script>
+  new Vue({
+    "el":".cat",
+    data:{"categories":[]},
+    mounted(){
+      var vueObj = this;
+      SDK.queryData('orders', 'category', {}, function(resp){
+        if(resp.payload.results.length > 0){
+          var cats = resp.payload.results;
+          for(var i=0; i<cats.length; i++) {
+            vueObj.categories.push(resp.payload.results[i]);
+          }
+        }
 
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+      })
+    }
 
-		ga('create', 'UA-58677854-6', 'auto');
-		ga('send', 'pageview');
-
-        </script>
+  })
+</script>
 
     </body>
 </html>

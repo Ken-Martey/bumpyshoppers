@@ -16,9 +16,8 @@ if(!isset($_SESSION['admin_login'])){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Dashboard | sub category list</title>
-        <meta name="description" content="Premium HTML5 Template">
-        <meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
-        <meta name="author" content="Amazyne Themes">
+        <meta name="description" content="Bumpy shoppers">
+        <meta name="keywords" content="Bumpy shoppers">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <!-- Favicon -->
@@ -179,16 +178,10 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.html">Add Product </a></li>
                       <li><a href="product-list.html">List of Products </a></li>
-
-                    </ul>
-                  </li>
-                  <li class="with-dropdown">
-                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-linegraph"></i>Special offers <span class="dropdown-icon"></span></a>
-                    <ul class="menu-dropdown collapse">
-                      <li><a href="add-special-offers.html">Add special offer</a></li>
                       <li><a href="special-offers-list.html">List of Special offers </a></li>
                     </ul>
                   </li>
+
 <li class="with-dropdown">
                     <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
                     <ul class="menu-dropdown collapse">
@@ -458,42 +451,17 @@ if(!isset($_SESSION['admin_login'])){
                                     <thead>
                                         <tr>
                                           <th>Name</th>
-                                          <th>Position</th>
-                                          <th>Office</th>
-                                          <th>Age</th>
-                                          <th>Start date</th>
-                      <th>Salary</th>
-                                          <th>Action</th>
+                                          <th>Desc</th>
+                                          <th>Image</th>
+                                          <th>Category</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="dv-get-all:orders:sub_category">
                                         <tr>
-                                          <td>Tiger Nixon</td>
-                                          <td>System Architect</td>
-                                          <td>Edinburgh</td>
-                                          <td>61</td>
-                                          <td>2011/04/25</td>
-                                          <td>$320,800</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
-                                        </tr>
-
-                                        <tr>
-                                          <td>Sakura Yamamoto</td>
-                                          <td>Support Engineer</td>
-                                          <td>Tokyo</td>
-                                          <td>37</td>
-                                          <td>2009/08/19</td>
-                                          <td>$139,575</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
-                                        </tr>
-                                        <tr>
-                                          <td>Thor Walton</td>
-                                          <td>Developer</td>
-                                          <td>New York</td>
-                                          <td>61</td>
-                                          <td>2013/08/11</td>
-                                          <td>$98,540</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
+                                          <td class="var-name">...</td>
+                                          <td class="var-desc">...</td>
+                                          <td><img src="" class="var-image" width="30" height="30"></td>
+                                          <td class="var-category-name">...</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -562,17 +530,27 @@ if(!isset($_SESSION['admin_login'])){
 
         <!-- Google Analytics Tracking -->
 
-        <script>
+<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+<script src="https://unpkg.com/vue"></script>
+<script>
+  new Vue({
+    "el":".cat",
+    data:{"categories":[]},
+    mounted(){
+      var vueObj = this;
+      SDK.queryData('orders', 'category', {}, function(resp){
+        if(resp.payload.results.length > 0){
+          var cats = resp.payload.results;
+          for(var i=0; i<cats.length; i++) {
+            vueObj.categories.push(resp.payload.results[i]);
+          }
+        }
 
-        ga('create', 'UA-58677854-6', 'auto');
-        ga('send', 'pageview');
+      })
+    }
 
-        </script>
-
+  })
+</script>
     </body>
 </html>

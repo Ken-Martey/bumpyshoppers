@@ -1,9 +1,6 @@
 /* ------------------------------------------------
 ---------------------------------------------------
 
-    Zenith's Main JavaScript Document
-    Version: 1.0
-    Created By: Amazyne Themes
 
 ---------------------------------------------------
 --------------------------------------------------- */
@@ -22,9 +19,9 @@
 
 
 function navResponsive() {
-    
+
     if (screenWidth > 991) {
-        
+
         $(".main-nav .navbar-nav > .dropdown > a").attr("data-toggle", "");
         $(".main-nav .navbar-nav.nav-search > .dropdown > a").attr("data-toggle", "dropdown");
         $('.main-nav .navbar-nav > .dropdown').removeClass('open');
@@ -36,14 +33,14 @@ function navResponsive() {
         if($('.navbar-toggle').hasClass('active')){
             $('.navbar-toggle').removeClass('active');
         }
-        
+
     }
     else if  (screenWidth <= 991)  {
-        
+
         $(".main-nav .navbar-nav > .dropdown > a").attr("data-toggle", "dropdown");
         $('.main-nav .nav > li .dropdown-menu').removeAttr('style');
         $('.main-nav .nav > li > .dropdown-menu').removeAttr('style');
-        
+
     }
 }
 
@@ -54,9 +51,9 @@ function navResponsive() {
 
 
 function navEvents() {
-    
+
     /*---- Dropdown Menu Events ----*/
-    
+
     $('.main-nav .navbar-nav > .dropdown > .dropdown-menu').click(function(event) {
         if(screenWidth <= 991) {
             event.stopPropagation();
@@ -66,7 +63,7 @@ function navEvents() {
     $( ".main-nav .navbar-nav>.dropdown>.dropdown-menu>.dropdown-submenu" ).click(function(event) {
         if(screenWidth < 991) {
             $this = $(this);
-            $this.siblings(".dropdown-submenu").removeClass("open").end(); 
+            $this.siblings(".dropdown-submenu").removeClass("open").end();
             $this.parents(".dropdown-submenu").addClass('open');
             $this.toggleClass('open');
             event.stopPropagation();
@@ -75,7 +72,7 @@ function navEvents() {
 
     $('.main-nav .navbar-nav > .dropdown > a').click(function(event) {
         $('.main-nav .navbar-nav .dropdown-submenu').removeClass('open');
-    });	
+    });
 
     $('.navbar-toggle').click(function(event){
         $(this).toggleClass('active')
@@ -86,28 +83,28 @@ function navEvents() {
             event.stopPropagation();
         }
     });
-	
+
 	if (screenWidth < 991) {
-		
+
 		$('.header-side').removeClass('in');
 		$('.side-header').removeClass('active');
-	
+
 	}
-    
+
     $('.main-nav .nav > li').hover(function() {
         var dropdownList = $(this).find("> .dropdown-menu");
 
         if (screenWidth > 991) {
-            
+
             /*---- Dropdown Animation on Hover ----*/
-    
-            dropdownList.addClass('animated fadeIn');        
+
+            dropdownList.addClass('animated fadeIn');
             window.setTimeout( function(){
                 dropdownList.removeClass('animated fadeIn');
-            }, 500);        
+            }, 500);
 
             /*---- Positioning Dropdown Menu ----*/
-            
+
             if(!dropdownList.hasClass('megamenu')){
                 var childDropdownList = $(this).find(".dropdown-submenu .dropdown-menu"),
                 dropdownOffset = $(this).offset(),
@@ -131,9 +128,9 @@ function navEvents() {
                     childDropdownList.removeAttr('style')
                 }
             }
-            
+
             /*---- Positioning Mega Menu ----*/
-            
+
             else if(dropdownList.hasClass('megamenu')){
                 var dropdownOffset = $(this).offset(),
                 linkWidth = $(this).width(),
@@ -156,9 +153,9 @@ function navEvents() {
             }
         }
     });
-	
+
     /*---- Full-screen Menu Events ----*/
-            
+
     $('.full-screen-menu-trigger').click(function(event) {
         event.preventDefault();
         $('.full-screen-header').fadeToggle();
@@ -167,7 +164,7 @@ function navEvents() {
     });
 
     /*---- Side Menu Events ----*/
-            
+
     $('.side-menu-trigger').click(function(event) {
         event.preventDefault();
         $(this).toggleClass('active');
@@ -177,7 +174,7 @@ function navEvents() {
 			setTimeout(function(){$('.chart-container').trigger('resize');},300);
 		}
     });
-	
+
 	$('.navbar-icons .navbar-left li a').click(function(){
 		if (screenWidth < 991 && $(this).parents('li').hasClass('dropdown')) {
 			var dropdownList = $(this).parents('li.dropdown').find("> .dropdown-menu");
@@ -185,7 +182,7 @@ function navEvents() {
 				dropdownOffset = Math.abs(dropdownOffset),
 				linkWidth = dropdownList.width(),
 				docWidth = $(window).width();
-				
+
 			setTimeout(function(){
 				dropdownOffset = dropdownList.offset().left;
 				if((dropdownOffset+linkWidth)>docWidth){
@@ -193,7 +190,7 @@ function navEvents() {
 					dropdownList.css('margin-left',calc+'px')
 				}
 			},1);
-		}	
+		}
 		else {
 			return;
 		}
@@ -207,36 +204,36 @@ function navEvents() {
             $('body').removeClass('in');
         }
     });
-	
+
 
     /*---- Sub-menu Events ----*/
-            
+
     $( ".menu-dropdown-link" ).click(function(event) {
 		if(!$(this).hasClass('inner') && !$(this).hasClass('third')){
-			
+
 			$(this)
 				.parent(".with-dropdown")
 				.siblings(".with-dropdown")
 				.children(".menu-dropdown.collapse")
 				.removeClass("in")
-				.end(); 
+				.end();
 			$(this).parents(".with-dropdown").children(".menu-dropdown.collapse").toggleClass('in');
 			//$( this ).parents(".with-dropdown").find(".menu-dropdown.collapse").toggleClass('in');
 			  event.stopPropagation();
 				$(".with-dropdown-2").find("> .menu-dropdown.collapse").removeClass('in')
 		}
 		else if ($(this).hasClass('inner')){
-			
+
 			$(this)
 				.parent(".with-dropdown-2")
 				.siblings(".with-dropdown-2")
 				.children(".menu-dropdown.collapse")
 				.removeClass("in")
-				.end(); 
+				.end();
 			$( this ).parents(".with-dropdown-2").children(".menu-dropdown.collapse").toggleClass('in');
 			$(".with-dropdown-3").find("> .menu-dropdown.collapse").removeClass('in')
 			event.stopPropagation();
-			
+
 		}
 		else if ($(this).hasClass('third')){
 			$(this)
@@ -244,12 +241,12 @@ function navEvents() {
 				.siblings(".with-dropdown-3")
 				.children(".menu-dropdown.collapse")
 				.removeClass("in")
-				.end(); 
+				.end();
 			$( this ).parents(".with-dropdown-3").children(".menu-dropdown.collapse").toggleClass('in');
 			event.stopPropagation();
 		}
     });
-	
+
     $('li.with-dropdown a.menu-dropdown-link').click(function () {
 		if(!$(this).hasClass('inner') && !$(this).hasClass('third')){
 			var dh = $( this ).parents(".with-dropdown").children(".menu-dropdown.collapse").outerHeight();
@@ -306,7 +303,7 @@ function navEvents() {
     });
 
     /*---- Search Box Events ----*/
-            
+
     $('.search-box-trigger').click(function(event) {
         if($(window).width() < 992) {
             if($('.navbar-collapse').hasClass('in')){
@@ -323,7 +320,7 @@ function navEvents() {
             $('#searchForm').submit();
         }
     });
-	
+
 }
 
 
@@ -359,7 +356,7 @@ var headerHeight = 0,
 
 
 function navOnePage() {
-    if( $('body').hasClass('one-page')){	
+    if( $('body').hasClass('one-page')){
         var offset = 0,
 			delay =0;
         var $sections = $('.one-page-section');
@@ -393,7 +390,7 @@ function navOnePage() {
             $('.main-nav .nav > li').removeClass('active');
             $("[href=#"+id+"]").parent('li').addClass('active');
         }
-		var timer;  
+		var timer;
         $(window).scroll(function(){
             if(timer){
                 sectionOffset();
@@ -407,7 +404,7 @@ function navOnePage() {
         var scrollActive = '';
         $('.main-nav .nav li a[href*=#]:not([href=#])').click(function() {
             if(scrollActive == true) {
-                event.preventDefault();	
+                event.preventDefault();
             }
             else {
                 var offset = 59;
@@ -483,17 +480,17 @@ function adjustModal(){
 $('#add-todo').click(function(){
   var lastSibling = $('#todo-list > .todo-wrap:last-of-type > input').attr('id');
   var newId = Number(lastSibling) + 1;
-      
+
   $(this).before('<span class="editing todo-wrap"><input type="checkbox" id="'+newId+'"/><label for="'+newId+'" class="todo"><i class="icon_check"></i><input type="text" class="input-todo" id="input-todo'+newId+'"/></label></div>');
   $('#input-todo'+newId+'').parent().parent().animate({
     height:"36px"
   },200)
   $('#input-todo'+newId+'').focus();
-  
+
 	$('#input-todo'+newId+'').enterKey(function(){
     $(this).trigger('enterEvent');
   })
-  
+
   $('#input-todo'+newId+'').on('blur enterEvent',function(){
     var todoTitle = $('#input-todo'+newId+'').val();
     var todoTitleLength = todoTitle.length;
@@ -524,7 +521,7 @@ $('#add-todo').click(function(){
 
 });
 
-// remove items 
+// remove items
 
 $('.delete-item').click(function(){
   var parentItem = $(this).parent();
@@ -637,7 +634,7 @@ function themeImageSection () {
     var fullScreenImage = document.getElementsByClassName("theme-background-section");
     if(document.getElementsByClassName("theme-background-section")){
         var windowH = window.innerHeight;
-        $('.theme-background-section').each(function(){ 
+        $('.theme-background-section').each(function(){
             $selection =  $(this);
             if($selection.hasClass('custom-height')) {
                 var customHeight = $selection.attr('data-custom-height');
@@ -658,7 +655,7 @@ function themeImageSection () {
                 if (typeof offsetContainer !== typeof undefined && offsetContainer !== false && offsetContainer !== '' && screenWidth > 767) {
                     var containerArray = offsetContainer.split(",");
                     var i, offsetHeight = 0, currentContainer;
-                    for (i = 0; i < containerArray.length; i++) { 
+                    for (i = 0; i < containerArray.length; i++) {
                         currentContainer = String(containerArray[i]);
                         offsetHeight += $(currentContainer).outerHeight();
                     }
@@ -711,7 +708,7 @@ function owlC() {
             "<i class='fa fa-angle-left'></i>",
             "<i class='fa fa-angle-right'></i>"
         ],
-    });		
+    });
 }
 
 
@@ -724,7 +721,7 @@ function counters() {
     $('.counter').counterUp({
         delay: 10,
         time: 2333
-    });	
+    });
 }
 
 
@@ -772,7 +769,7 @@ function progressBarsOnView() {
         $(this).css('width', $(this).attr('aria-valuenow')+'%');
     }, {
         offset: '100%'
-    });	
+    });
 }
 
 /* ------------------------------------------------
@@ -805,7 +802,7 @@ function tooltip() {
     $(".tip-left").tooltip({
         placement : 'left',
         container : 'body'
-    });	
+    });
 }
 
 
@@ -907,7 +904,7 @@ jQuery(document).ready(function($){
 		timelines.each(function(){
 			var timeline = $(this),
 				timelineComponents = {};
-			//cache timeline components 
+			//cache timeline components
 			timelineComponents['timelineWrapper'] = timeline.find('.events-wrapper');
 			timelineComponents['eventsWrapper'] = timelineComponents['timelineWrapper'].children('.events');
 			timelineComponents['fillingLine'] = timelineComponents['eventsWrapper'].children('.filling-line');
@@ -975,8 +972,8 @@ jQuery(document).ready(function($){
 		//retrieve translateX value of timelineComponents['eventsWrapper']
 		var translateValue = getTranslateValue(timelineComponents['eventsWrapper']),
 			wrapperWidth = Number(timelineComponents['timelineWrapper'].css('width').replace('px', ''));
-		//translate the timeline to the left('next')/right('prev') 
-		(string == 'next') 
+		//translate the timeline to the left('next')/right('prev')
+		(string == 'next')
 			? translateTimeline(timelineComponents, translateValue - wrapperWidth + eventsMinDistance, wrapperWidth - timelineTotWidth)
 			: translateTimeline(timelineComponents, translateValue + wrapperWidth - eventsMinDistance);
 	}
@@ -989,7 +986,7 @@ jQuery(document).ready(function($){
 		if ( newContent.length > 0 ) { //if there's a next/prev event - show it
 			var selectedDate = timelineComponents['eventsWrapper'].find('.selected'),
 				newEvent = ( string == 'next' ) ? selectedDate.parent('li').next('li').children('a') : selectedDate.parent('li').prev('li').children('a');
-			
+
 			updateFilling(newEvent, timelineComponents['fillingLine'], timelineTotWidth);
 			updateVisibleContent(newEvent, timelineComponents['eventsContent']);
 			newEvent.addClass('selected');
@@ -1033,7 +1030,7 @@ jQuery(document).ready(function($){
 	}
 
 	function setDatePosition(timelineComponents, min) {
-		for (i = 0; i < timelineComponents['timelineDates'].length; i++) { 
+		for (i = 0; i < timelineComponents['timelineDates'].length; i++) {
 		    var distance = daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][i]),
 		    	distanceNorm = Math.round(distance/timelineComponents['eventsMinLapse']) + 2;
 		    timelineComponents['timelineEvents'].eq(i).css('left', distanceNorm*min+'px');
@@ -1048,7 +1045,7 @@ jQuery(document).ready(function($){
 		timelineComponents['eventsWrapper'].css('width', totalWidth+'px');
 		updateFilling(timelineComponents['eventsWrapper'].find('a.selected'), timelineComponents['fillingLine'], totalWidth);
 		updateTimelinePosition('next', timelineComponents['eventsWrapper'].find('a.selected'), timelineComponents);
-	
+
 		return totalWidth;
 	}
 
@@ -1135,7 +1132,7 @@ jQuery(document).ready(function($){
 	function minLapse(dates) {
 		//determine the minimum distance among events
 		var dateDistances = [];
-		for (i = 1; i < dates.length; i++) { 
+		for (i = 1; i < dates.length; i++) {
 		    var distance = daydiff(dates[i-1], dates[i]);
 		    dateDistances.push(distance);
 		}
@@ -1181,14 +1178,14 @@ jQuery(document).ready(function($){
 
 
 function footerResponsive(screenheight) {
-	
+
 	if($('.page-content').height()<screenHeight){
 		$('.footer').addClass('stick-to-bottom');
 	}
 	else {
 		$('.footer').removeClass('stick-to-bottom');
 	}
-	
+
 }
 
 
@@ -1200,10 +1197,10 @@ function footerResponsive(screenheight) {
 
 
 function formValidation() {
-	
+
     generateCaptcha();
 
-    
+
 /* ------------------------------------------------
     Init Contact Form
 --------------------------------------------------- */
@@ -1211,17 +1208,17 @@ function formValidation() {
 
     $('#contactForm').formValidation({
         framework: 'bootstrap',
-        
+
         /*---- Feedback Icons ----*/
-    
+
         icon: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
-        
+
         /*---- Fields to be Validated ----*/
-    
+
         fields: {
             firstName: {
                 validators: {
@@ -1295,9 +1292,9 @@ function formValidation() {
         generateCaptcha();
     })
     .on('success.form.fv', function(e) {
-        
+
         /*---- Ajax Code for Submitting Form ----*/
-    
+
         e.preventDefault();
         var $form = $(e.target),
         id = $form.attr('id'),
@@ -1318,7 +1315,7 @@ function formValidation() {
         });
     });
 
-    
+
 /* ------------------------------------------------
     Init Footer Newsletter Form
 --------------------------------------------------- */
@@ -1326,17 +1323,17 @@ function formValidation() {
 
     $('#footerNewsletterForm').formValidation({
         framework: 'bootstrap',
-        
+
         /*---- Feedback Icons ----*/
-    
+
         icon: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
-        
+
         /*---- Fields to be Validated ----*/
-    
+
         fields: {
             newsletterEmail: {
                 validators: {
@@ -1350,7 +1347,7 @@ function formValidation() {
             },
         }
     });
-    
+
     $('#newsletterForm').formValidation({
         framework: 'bootstrap',
         icon: false,
@@ -1368,14 +1365,14 @@ function formValidation() {
         }
     });
 
-    
+
 /* ------------------------------------------------
     Init Payment Form
 --------------------------------------------------- */
 
-	
+
 	$('#paymentForm').formValidation({
-		
+
 		message: 'This value is not valid',
         icon: {
             valid: 'glyphicon glyphicon-ok',
@@ -1490,7 +1487,7 @@ function formValidation() {
                     }
                 }
             }
-			
+
         }
 	})
 	.on('err.field.fv', function(e, data) {
@@ -1499,12 +1496,12 @@ function formValidation() {
 	.on('success.field.fv', function(e, data) {
 		data.fv.disableSubmitButtons(false);
 	});
-	
+
 	$('input:radio[name=paymentOptions]').click(function(){
 		var val = $('input:radio[name=paymentOptions]:checked').val();
 		if (val == 1) {
 			$("#paymentForm :input").prop("disabled", false);
-			$(".btn-card-type").removeAttr("style");	
+			$(".btn-card-type").removeAttr("style");
 		}
 		else {
 			$("#paymentForm :input").not('button').prop("disabled", true);
@@ -1518,8 +1515,8 @@ function formValidation() {
 /* ------------------------------------------------
     Generate Captcha Codes
 --------------------------------------------------- */
- 
- 
+
+
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -1541,12 +1538,12 @@ var $win = $(window);
 /* ------------------------------------------------
     Window Resize Events
 --------------------------------------------------- */
-  
-  
+
+
 $win.on('resize', function() {
-    
+
     /*---- Resetting Variables ----*/
-	
+
     isStickyElementFixed = false;
     winScrollY = 0;
     stickyElementSetPoint = 0;
@@ -1563,29 +1560,29 @@ $win.on('resize', function() {
     headerHeight = 0;
 
     navResponsive();
-	
+
 	navOnePage();
 
 	footerResponsive(screenHeight);
-	
+
     setTimeout(centerModal, 800)
-	
+
     themeImageSection();
 
 	slimscroll();
 
     verticallyCentered();
-	
+
 }).resize();
 
 
 /* ------------------------------------------------
     Window Load Events
 --------------------------------------------------- */
-  
-  
+
+
 $win.on('load', function() {
-	
+
     navEvents();
 
     progressBarsOnView();
@@ -1601,7 +1598,7 @@ $win.on('load', function() {
     tooltip();
 
     formValidation();
-	
+
     /*---- Auto Modal Box ----*/
 
     $('.modal.auto').modal('show');
@@ -1609,5 +1606,5 @@ $win.on('load', function() {
     /*---- Hide Page Loader ----*/
 
     $(".loader").fadeOut("slow");
-	
+
 });
