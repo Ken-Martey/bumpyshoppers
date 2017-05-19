@@ -147,16 +147,16 @@
                   <li class="with-dropdown">
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Categories <span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
-                      <li><a href="add-category.html">Add Categories</a></li>
-                      <li><a href="product-category-list.html">List of Categories</a></li>
+                      <li><a href="add-category.php">Add Categories</a></li>
+                      <li><a href="product-category-list.php">List of Categories</a></li>
 
                     </ul>
                   </li>
                   <li class="with-dropdown">
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Sub categories<span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
-                      <li><a href="add-sub-category.html">Add sub categories</a></li>
-                      <li><a href="sub-category-list.html">List of sub categories</a></li>
+                      <li><a href="add-sub-category.php">Add sub categories</a></li>
+                      <li><a href="sub-category-list.php">List of sub categories</a></li>
 
                     </ul>
                   </li>
@@ -164,9 +164,9 @@
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Products <span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
 
-                      <li><a href="add-product.html">Add Product </a></li>
-                      <li><a href="product-list.html">List of Products </a></li>
-                      <li><a href="special-offers-list.html">List of Special offers </a></li>
+                      <li><a href="add-product.php">Add Product </a></li>
+                      <li><a href="product-list.php">List of Products </a></li>
+                      <li><a href="special-offers-list.php">List of Special offers </a></li>
 
                     </ul>
                   </li>
@@ -174,8 +174,8 @@
                   <li class="with-dropdown">
                     <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
                     <ul class="menu-dropdown collapse">
-                      <li><a href="add-special-offers.html">Pending orders</a></li>
-                      <li><a href="special-offers-list.html">processed orders</a></li>
+                      <li><a href="add-special-offers.php">Pending orders</a></li>
+                      <li><a href="special-offers-list.php">processed orders</a></li>
                     </ul>
                   </li>
 
