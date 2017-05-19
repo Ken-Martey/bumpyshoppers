@@ -159,7 +159,6 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.php">Add Product </a></li>
                       <li><a href="product-list.php">List of Products </a></li>
-                      <li><a href="special-offers-list.php">List of Special offers </a></li>
 
                     </ul>
                   </li>

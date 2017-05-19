@@ -165,7 +165,6 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.php">Add Product </a></li>
                       <li><a href="product-list.php">List of Products </a></li>
-                      <li><a href="special-offers-list.php">List of Special offers </a></li>
 
                     </ul>
                   </li>
@@ -343,7 +342,7 @@ if(!isset($_SESSION['admin_login'])){
         <!-- Google Analytics Tracking -->
 <script src="https://unpkg.com/vue"></script>
 
-<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
+<script src="http://admin.bumpyshoppers.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 <script>
   new Vue({
     "el":".cat",

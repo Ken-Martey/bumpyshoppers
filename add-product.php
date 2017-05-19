@@ -171,7 +171,6 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.php">Add Product </a></li>
                       <li><a href="product-list.php">List of Products </a></li>
-                      <li><a href="special-offers-list.php">List of Special offers </a></li>
 
                     </ul>
                   </li>
@@ -248,12 +247,6 @@ if(!isset($_SESSION['admin_login'])){
 
                       <label class="control-label">Image</label>
                     <input type="file" class="form-control"  id="image_url" />
-
-                    <label class="control-label">Mark as Special Offer</label>
-                     <select class="form-control cat" id="on_offer">
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
                     <br>
                    				<button type="submit" onclick="addProduct(event)" class="btn btn-theme">Submit</button>
 							</form><!-- End of Form with Tooltip Alerts -->
@@ -267,7 +260,7 @@ if(!isset($_SESSION['admin_login'])){
 
         <!-- Loading Third Party Scripts -->
 
-<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
+<script src="http://admin.bumpyshoppers.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 
 		<script src="third-party/jquery/jquery.min.js"></script>
 		<script src="third-party/easing/js/jquery.easings.min.js"></script>

@@ -178,7 +178,6 @@ if(!isset($_SESSION['admin_login'])){
 
                       <li><a href="add-product.php">Add Product </a></li>
                       <li><a href="product-list.php">List of Products </a></li>
-                      <li><a href="special-offers-list.php">List of Special offers </a></li>
 
                     </ul>
                   </li>
@@ -242,7 +241,9 @@ if(!isset($_SESSION['admin_login'])){
 										  <td class="var-name">...</td>
 										  <td class="var-desc">...</td>
 										   <td ><img src="" class="var-image" width="50" height="50"></td>
+                       <td><a class="btn btn-theme dv-update" data-toggle="modal" data-target="#modalForm"> Edit</a></td>
 									</tr>
+
 									</tbody>
 								</table>
 							</div>
@@ -253,7 +254,43 @@ if(!isset($_SESSION['admin_login'])){
 			</div>
 		</div><!-- End of Page Content -->
 
+<!-- modal -->
+                <div class="col-md-3">
 
+                  <div class="modal centered fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="LoginPanel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content modal-background">
+                        <div class="modal-body pad-top-50 pad-bot-50 pad-left-50 pad-right-50">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <h3 id="LoginPanel" class="no-margin-top mar-bot-10 text-uppercase text-center letter-spacing-1">update Category</h3>
+                                <p class="no-margin text-center letter-spacing-1"><small>Please provide this update for this category</small></p>
+
+                                  <form class="dv-update-oneof:orders:category">
+                                  <label class="control-label">Category Name</label>
+                                  <input type="text" class="form-control"  name="name" placeholder="Please enter category name" />
+                                  <label class="control-label" >Category Image</label>
+                                          <!-- <input type="file" class="form-control" name="image"> -->
+                                  <label class="control-label">Description</label>
+                                  <textarea class="form-control" name="desc" id="cat_desc" rows="4" ></textarea>
+
+
+                                              <br>
+                                  <button type="submit" class="btn btn-default" >Submit</button>
+
+                            </form><!-- End of Form with Tooltip Alerts -->
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!-- end of modal  -->
 
         <!-- Loading Third Party Scripts -->
 
@@ -309,7 +346,7 @@ if(!isset($_SESSION['admin_login'])){
 		</script>
 
 
-<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
+<script src="http://admin.bumpyshoppers.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 
 
     </body>

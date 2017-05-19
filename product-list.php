@@ -158,7 +158,6 @@
 
                       <li><a href="add-product.php">Add Product </a></li>
                       <li><a href="product-list.php">List of Products </a></li>
-                      <li><a href="special-offers-list.php">List of Special offers </a></li>
 
                     </ul>
                   </li>
@@ -231,8 +230,7 @@
 										  <td class="var-clubPrice">...</td>
 										  <td class="var-origPrice">...</td>
 										  <td class="var-category-name">...</td>
-										  <td><button class="btn btn-theme">Update</button></td>
-
+                       <td><a class="btn btn-theme dv-update" data-toggle="modal" onclick="getId(event)" data-target="#modalForm"> Edit</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -243,11 +241,64 @@
 				</div>
 			</div>
 		</div><!-- End of Page Content -->
+<!-- modal -->
+                <div class="col-md-3">
+                  <div class="modal centered fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="LoginPanel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content modal-background">
+                        <div class="modal-body pad-top-50 pad-bot-50 pad-left-50 pad-right-50">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <h3 id="LoginPanel" class="no-margin-top mar-bot-10 text-uppercase text-center letter-spacing-1">update Product</h3>
+                                <p class="no-margin text-center letter-spacing-1"><small>Product update form.</small></p>
 
+                              <form class="dv-update-oneof:orders:stock">
+                                  <label class="control-label">Select a Category</label>
+                                   <select class="form-control cat" id="orders_category_id" >
+                                    <div class="cat" >
+                                      <option v-for="category in categories" v-bind:value="category.id">{{category.name}}</option>
+                                    </div>
+                                  </select>
+                                  <label class="control-label">Product Name</label>
+                                  <input type="text" class="form-control" id="name" name="name" />
+                                  <input type="hidden" class="form-control" name="id" />
+                                  <label class="control-label">Short description</label>
+                                  <textarea class="form-control"  rows="4" id="short_desc" name="short_desc"></textarea>
+                                  <label class="control-label">Long description</label>
+                                  <textarea class="form-control" rows="4" id="long_desc" name="long_desc"></textarea>
+                                  <label class="control-label">Club price</label>
+                                  <input type="text" class="form-control" id="clubPrice" name="clubPrice" />
+
+                                  <label class="control-label">Original price</label>
+                                  <input type="text" class="form-control" id="origPrice" name="origPrice" />
+
+                                   <!--  <label class="control-label">Image</label>
+                                  <input type="file" class="form-control"  id="image_url" /> -->
+
+                                  <label class="control-label">Mark as Special Offer</label>
+                                   <select class="form-control cat" id="on_offer" name="on_offer">
+                                      <option value="0">No</option>
+                                      <option value="1">Yes</option>
+                                  </select>
+                                  <br>
+                                    <button type="submit" onclick="updateProduct(event)" class="btn btn-theme">Update product</button>
+                            </form><!-- End of Form with Tooltip Alerts -->
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!-- end of modal  -->
 
         <!-- Loading Third Party Scripts -->
 
-<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
+<script src="http://admin.bumpyshoppers.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
 
 		<script src="third-party/jquery/jquery.min.js"></script>
 		<script src="third-party/easing/js/jquery.easings.min.js"></script>
@@ -299,5 +350,83 @@
 				})
 			});
 		</script>
+    <script src="https://unpkg.com/vue"></script>
+<script>
+  new Vue({
+    "el":".cat",
+    data:{"categories":[]},
+    mounted(){
+      var vueObj = this;
+      SDK.queryData('orders', 'category', {}, function(resp){
+        if(resp.payload.results.length > 0){
+          var cats = resp.payload.results;
+          for(var i=0; i<cats.length; i++) {
+            vueObj.categories.push(resp.payload.results[i]);
+          }
+        }
+
+      })
+    }
+
+  })
+</script>
+<script>
+function setImage() {
+  function getBase64(file) {
+   var reader = new FileReader();
+   reader.readAsDataURL(file);
+     reader.addEventListener('load', function(){
+          var image = reader.result;
+          document.getElementById('image').value = image;
+          console.log(image);
+
+      }, false)
+   reader.onerror = function (error) {
+     console.log('Error: ', error);
+   };
+}
+
+  var file = document.querySelector('#image_url').files[0];
+  console.log("file", file);
+  getBase64(file); // prints the base64 string
+
+
+}
+
+// document.getElementById("image_url").addEventListener("change", setImage);
+
+
+
+  function updateProduct(event) {
+    event.preventDefault();
+    console.log(event)
+    var data = {};
+    var keys = ['orders_category_id', 'name', 'long_desc',
+     'short_desc', 'clubPrice', 'origPrice', 'on_offer'];
+
+    for(var i= 0; i < keys.length; i++) {
+      data[keys[i]] = document.getElementById(keys[i]).value;
+      console.log(data);
+    }
+    SDK.updateData('orders', 'stock', 'id', data, function(resp){
+      if(resp.status_code == 609 )
+      {
+        for(var i= 0; i < keys.length; i++) {
+           document.getElementById(keys[i]).value ="";
+        }
+          document.getElementsByClassName('dv-notify-success')[0].style.display = 'block';
+          document.getElementsByClassName('dv-notify-success')[0].value = "Product added successfully";
+      } else {
+          document.getElementsByClassName('dv-notify-failed')[0].style.display = 'block';
+          document.getElementsByClassName('dv-notify-failed')[0].value = "Product Could not be added";
+      }
+    });
+  }
+  console.log($);
+</script>
     </body>
 </html>
+
+
+
+<!-- dashboard is complete -->
