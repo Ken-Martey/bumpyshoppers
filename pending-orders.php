@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['admin_login'])){
+	header('Location:login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +14,7 @@
 
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Dashboard | Bumpy Shoppers</title>
+		<title>Dashboard | Pending orders</title>
 		<meta name="description" content="Premium HTML5 Template">
 		<meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
 		<meta name="author" content="Amazyne Themes">
@@ -36,12 +44,10 @@
 		<link rel="stylesheet" href="third-party/owl/css/owl.theme.css">
 		<link rel="stylesheet" href="third-party/form-validation/css/formValidation.min.css">
 
-		<!-- Loading Page's Styles -->
+		<!-- Loading Page's Style -->
 
-		<link rel="stylesheet" href="third-party/morris.js/morris.css">
-		<link rel="stylesheet" href="third-party/dropzone/css/dropzone.min.css">
-		<link rel="stylesheet" href="third-party/full-calendar/css/fullcalendar.min.css">
-
+		<link rel="stylesheet" type="text/css" href="third-party/datatables/media/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="third-party/datatables/media/css/dataTables.bootstrap.min.css">
 
 		<!-- Loading Theme's Styles -->
 
@@ -59,26 +65,29 @@
 	<!-- Remove "header-side" if side menu isn't present | Remove "in" if you want the side-header closed by default -->
 
 	<body class="header-side in">
-		<!-- Page Loader -->
-		<!-- <div class="loader">
-			<div class="spinner"></div>
-		</div> -->
-		<!-- Page Content -->
+
+
 		<div class="page-content">
+
+
             <header class="navigation">
+
                 <!-- Header Wrapper -->
+
                 <div class="main-nav dark-dropdown nav-icons-right header-icons header-right">
                     <div class="navbar navbar-default" role="navigation">
 						<div class="container active">
 							<div class="navbar-header">
-                                <a href="#" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <a href="tables-datatables.html#" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                     <ul class="bar-icon-wrapper">
                                         <li class="bar-icon"></li>
                                         <li class="bar-icon"></li>
                                         <li class="bar-icon"></li>
                                     </ul>
 								</a>
+
 								<!-- Logo -->
+
 								<a class="logo" href="index.html">
 									<img alt="image" src="images/bumpy-admin-logo.png" />
 								</a><!-- End of Logo -->
@@ -95,7 +104,7 @@
 									<!-- Sidebar Menu Trigger -->
 
                                     <li class="menu-icon">
-                                        <a class="side-menu-trigger" href="#">
+                                        <a class="side-menu-trigger" href="tables-datatables.html#">
                                             <ul class="bar-icon-wrapper">
                                                 <li class="bar-icon"></li>
                                                 <li class="bar-icon"></li>
@@ -129,27 +138,19 @@
 					<!-- Side Header | Remove "active" if you want side header closed by default -->
 
 					<div class="side-header active">
-						<div class="side-header-container">
-							<div class="side-header-inner-container">
-								<ul class="side-header-nav">
-									<li class="with-dropdown active">
-										<a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-presentation"></i>Dashboard</a>
+            <div class="side-header-container">
+              <div class="side-header-inner-container">
+                <ul class="side-header-nav">
+                  <li class="with-dropdown active">
+                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-presentation"></i>Dashboard</a>
 
-									</li>
-									<li class="menu-heading">Menu</li>
-									<li class="with-dropdown">
-										<a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Categories<span class="dropdown-icon"></span></a>
-										<ul class="menu-dropdown collapse">
-											<li><a href="add-category.html">Add Categories</a></li>
-											<li><a href="product-category-list.html">List of Categories</a></li>
-
-										</ul>
-									</li>
+                  </li>
+                  <li class="menu-heading">Menu</li>
                   <li class="with-dropdown">
-                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Sub categories<span class="dropdown-icon"></span></a>
+                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Categories <span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
-                      <li><a href="add-sub-category.html">Add sub categories</a></li>
-                      <li><a href="sub-category-list.html">List of sub categories</a></li>
+                      <li><a href="add-category.html">Add Categories</a></li>
+                      <li><a href="product-category-list.html">List of Categories</a></li>
 
                     </ul>
                   </li>
@@ -162,122 +163,109 @@
 
                     </ul>
                   </li>
-									<li class="with-dropdown">
-										<a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-linegraph"></i>Special offers <span class="dropdown-icon"></span></a>
-										<ul class="menu-dropdown collapse">
-											<li><a href="add-special-offers.html">Add special offer</a></li>
-											<li><a href="special-offers-list.html">List of Special offers </a></li>
-										</ul>
-									</li>
+                  <li class="with-dropdown">
+                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-linegraph"></i>Special offers <span class="dropdown-icon"></span></a>
+                    <ul class="menu-dropdown collapse">
+                      <li><a href="add-special-offers.html">Add special offer</a></li>
+                      <li><a href="special-offers-list.html">List of Special offers </a></li>
+                    </ul>
+                  </li>
 
-									<li class="with-dropdown">
-										<a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
+                  <li class="with-dropdown">
+                    <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
                     <ul class="menu-dropdown collapse">
                       <li><a href="pending-orders.html">Pending orders</a></li>
                       <li><a href="processed-orders.html">processed orders</a></li>
                     </ul>
-									</li>
+                  </li>
 
 
+                </ul>
+              </div>
+            </div>
+          </div>
+				</div>
+			</header> <!-- End of Header -->
+
+
+
+			<!-- Page Header -->
+
+			<section class="page-top">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 header-inline">
+							<div class="header-inline-content">
+								<h2 class="page-title">Pending orders</h2>
+							</div>
+							<div class="header-inline-content">
+								<ul class="breadcrumb">
+									<li><a href="index.html"></a></li>
+									<li class="active"></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
-			</header> <!-- End of Header -->
+			</section><!-- End of Page Header -->
+
+			 <!-- Flot Basic -->
 
 			<div class="section-admin container-fluid">
-				<div class="row admin text-center">
+				<div class="row">
 					<div class="col-md-12">
-						<div class="row">
-							<div class="col-lg-3 col-sm-6">
-								<div class="admin-content bg-blue text-light text-left">
-									<span class="counter-icon counter-icon-big icon_ribbon color-dark-blue"></span>
-									<span class="counter-extend"></span><span class="counter">5</span>
-									<h3>Categories</h3>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="admin-content bg-dark-blue text-light text-left">
-									<span class="counter-icon counter-icon-big icon_tags"></span>
-									<span class="counter">100</span>
-									<h3>products</h3>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="admin-content bg-purple text-light text-left">
-									<span class="counter-icon counter-icon-big icon_cart"></span>
-									<span class="counter">10</span>
-									<h3>Special Offers</h3>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="admin-content bg-dark-green text-light text-left">
-									<span class="counter-icon counter-icon-big icon_chat color-green"></span>
-									<span class="counter">80</span>
-									<h3>pending Orders</h3>
-								</div>
+						<div class="admin-content">
+							<div class="table-responsive">
+								<table id="example1" class="table table-theme table-striped">
+									<thead>
+										<tr>
+										  <th>Name</th>
+										  <th>Position</th>
+										  <th>Office</th>
+										  <th>Age</th>
+										  <th>Start date</th>
+                      <th>Salary</th>
+										  <th>Action</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+										  <td>Tiger Nixon</td>
+										  <td>System Architect</td>
+										  <td>Edinburgh</td>
+										  <td>61</td>
+										  <td>2011/04/25</td>
+										  <td>$320,800</td>
+                      <td><button type="" class="btn btn-theme">Item</button></td>
+										</tr>
+
+										<tr>
+										  <td>Sakura Yamamoto</td>
+										  <td>Support Engineer</td>
+										  <td>Tokyo</td>
+										  <td>37</td>
+										  <td>2009/08/19</td>
+										  <td>$139,575</td>
+                      <td><button type="" class="btn btn-theme">Item</button></td>
+										</tr>
+										<tr>
+										  <td>Thor Walton</td>
+										  <td>Developer</td>
+										  <td>New York</td>
+										  <td>61</td>
+										  <td>2013/08/11</td>
+										  <td>$98,540</td>
+                      <td><button type="" class="btn btn-theme">Item</button></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Page Header -->
-
-      <section class="page-top">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12 header-inline">
-              <div class="header-inline-content">
-                <h2 class="page-title">Pending Orders</h2>
-              </div>
-              <div class="header-inline-content">
-                <ul class="breadcrumb">
-                  <li><a href="">Home</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section><!-- End of Page Header -->
-
-       <!-- Flot Basic -->
-
-      <div class="section-admin container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="admin-content">
-              <div class="table-responsive">
-                <table id="example1" class="table table-theme table-striped">
-                  <thead>
-                    <tr>
-                      <th>Customer Name</th>
-                      <th>Description</th>
-                      <th>Ref Code</th>
-                      <th>Order Note</th>
-                      <th>Total payable</th>
-                      <th>Contact</th>
-                      <th>Items</th>
-                    </tr>
-                  </thead>
-                  <tbody class="dv-get-all:orders:order_list">
-                    <tr>
-                      <td class="var-customer_name">...</td>
-                      <td class="var-description">...</td>
-                      <td class="var-reference_code">...</td>
-                      <td class="var-order_note">...</td>
-                      <td class="var-total_payable">...</td>
-                      <td class="var-customer_contact">...</td>
-                      <td><button type="" class="btn btn-theme">Item</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+		</div><!-- End of Page Content -->
 
 
         <!-- Loading Third Party Scripts -->
@@ -295,10 +283,30 @@
 		<script src="third-party/slimscroll/jquery.slimscroll.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
 
-		<!-- Loading Page's Script -->
+		<!-- Loading Page's Scripts -->
 
-		<script src="third-party/morris.js/morris.js"></script>
-		<script src="pages/morris-charts.js"></script>
+		<script  src="third-party/datatables/media/js/jquery.dataTables.min.js"></script>
+		<script  src="third-party/datatables/media/js/dataTables.bootstrap.min.js"></script>
+
+		<!-- Export functionality -->
+		<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+		<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+		<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+		<!-- End of Export functionality -->
+
+		<script>
+			$('#example1').DataTable();
+			$('#example2').DataTable( {
+				dom: 'Bfrtip',
+				buttons: [
+					'copy', 'csv', 'excel', 'pdf', 'print'
+				]
+			});
+		</script>
 
         <!-- Loading Theme's Scripts -->
 
@@ -315,8 +323,17 @@
 
         <!-- Google Analytics Tracking -->
 
+        <script>
 
-<script src="http://admin.bumpyshoppersclub.com/js/devless-sdk.js" class="devless-connection" devless-con-token="2d490ab1264453d3cb2718d699cdfd0a"></script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-58677854-6', 'auto');
+		ga('send', 'pageview');
+
+        </script>
 
     </body>
 </html>

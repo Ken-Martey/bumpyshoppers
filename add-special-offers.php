@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['admin_login'])){
+  header('Location:login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +14,7 @@
 
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Dashboard | Add sub category</title>
+		<title>Dashboard | Special offer</title>
 		<meta name="description" content="Premium HTML5 Template">
 		<meta name="keywords" content=" HTML5, Premium Template, Nucleus Theme">
 		<meta name="author" content="Amazyne Themes">
@@ -53,15 +61,15 @@
 
 	<body class="header-side in">
 
-		<!-- Page Loader -->
-
-	<!-- 	<div class="loader">
-			<div class="spinner"></div>
-		</div> -->
 
 		<!-- Page Content -->
 
 		<div class="page-content">
+
+            <!-- Header - Add "light" for light menu | "nav-dark-blue" for dark-blue accent | "nav-blue" for blue accent | "nav-blue-grey" for blue-grey accent |
+				 "nav-green" for green accent | "nav-dark-green" for dark-green accent | "nav-purple" for purple accent | "nav-red" for red accent |
+				  "nav-Orange" for Orange accent | "nav-yellow" for yellow accent -->
+
             <header class="navigation">
 
                 <!-- Header Wrapper -->
@@ -127,7 +135,7 @@
 
 					<!-- Side Header | Remove "active" if you want side header closed by default -->
 
-					<div class="side-header active">
+				<div class="side-header active">
             <div class="side-header-container">
               <div class="side-header-inner-container">
                 <ul class="side-header-nav">
@@ -144,7 +152,7 @@
 
                     </ul>
                   </li>
-                  <li class="with-dropdown">
+                   <li class="with-dropdown">
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Sub categories<span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
                       <li><a href="add-sub-category.html">Add sub categories</a></li>
@@ -168,15 +176,12 @@
                       <li><a href="special-offers-list.html">List of Special offers </a></li>
                     </ul>
                   </li>
-<li class="with-dropdown">
+                    <li class="with-dropdown">
                     <a class="menu-dropdown-link with-badge" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-grid"></i>Orders<span class="dropdown-icon"></span><span class="menu-badge bg-orange">2</span></a>
                     <ul class="menu-dropdown collapse">
-                      <li><a href="pending-orders.html">Pending orders</a></li>
-                      <li><a href="processed-orders.html">processed orders</a></li>
+                      <li><a href="add-special-offers.html">Pending orders</a></li>
+                      <li><a href="special-offers-list.html">processed orders</a></li>
                     </ul>
-                  </li>n">New</span></a>
-                  </li>
-
 
                 </ul>
               </div>
@@ -186,6 +191,7 @@
 			</header> <!-- End of Header -->
 
 
+
 			<!-- Page Header -->
 
 			<section class="page-top">
@@ -193,10 +199,14 @@
 					<div class="row">
 						<div class="col-md-12 header-inline">
 							<div class="header-inline-content">
-								<h2 class="page-title">Add Sub Category</h2>
+								<h2 class="page-title">Add special offers</h2>
 							</div>
 							<div class="header-inline-content">
-
+								<ul class="breadcrumb">
+									<li><a href="index.html"></a></li>
+									<li></li>
+									<li class="active"></li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -207,15 +217,15 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="admin-content">
-							<h4 class="text-center">Add Product Sub categories</h4>
-							<p class="mar-bot-30 text-center">Choose a main category and add a sub category</p>
+							<h4 class="text-center">Add special offer products</h4>
+							<p class="mar-bot-30 text-center">Add products that are on sale or special offers</p>
 
 							<!-- Form with Tooltip Alerts -->
 
 							<form id="tooltipForm" method="post" action="form-tooltip-alerts.html#" class="row form-theme">
-              <div class="col-sm-12">
+                <div class="col-sm-6">
                   <div class="form-group">
-                    <label class="control-label">Choose a category</label>
+                    <label class="control-label">Select a Category</label>
                      <select class="form-control">
                         <option value="0" selected>All Categories</option>
                         <option value="1">Category one</option>
@@ -225,30 +235,61 @@
                     </select>
                   </div>
                 </div>
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="control-label">Add sub category Name</label>
-										<input type="text" class="form-control"/>
-									</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="control-label">Description</label>
-										<textarea class="form-control" name="message" rows="4" ></textarea>
-									</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="form-group">
-										<button type="submit" class="btn btn-theme">Submit</button>
-									</div>
-								</div>
-							</form><!-- End of Form with Tooltip Alerts -->
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label">Product Name</label>
+                    <input type="text" class="form-control" name="lastName"/>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label">Short description</label>
+                    <textarea class="form-control" name="message" rows="4" ></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label">Long description</label>
+                    <textarea class="form-control" name="message" rows="4" ></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label">Club price</label>
+                    <input type="text" class="form-control" name="lastName"/>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label">Original price</label>
+                    <input type="text" class="form-control" name="lastName"/>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label">Product Image</label>
+                       <input type="file" class="btn btn-success fileinput-button dz-clickable">
+
+                      </button>
+                    <br>
+                </div>
+                 <div class="col-sm-6">
+                    <label class="control-label">Mega Product Image</label>
+                       <input type="file" class="btn btn-success fileinput-button dz-clickable">
+
+                      </button>
+                    <br>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-theme">Submit</button>
+                  </div>
+                </div>
+              </form><!-- End of Form with Tooltip Alerts -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!-- End of Page Content -->
-
 
 
         <!-- Loading Third Party Scripts -->
@@ -269,62 +310,7 @@
 		<!-- Loading Page's Scripts -->
 
 		<script src="pages/formsValidator.min.js"></script>
-<script src="third-party/dropzone/js/dropzone.min.js"></script>
 
-    <script>
-    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-      Dropzone.autoDiscover = false;
-      var previewNode = document.querySelector("#template");
-      previewNode.id = "";
-      var previewTemplate = previewNode.parentNode.innerHTML;
-      previewNode.parentNode.removeChild(previewNode);
-
-      var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-        url: "/php/contact.php", // Set the url
-        thumbnailWidth: 80,
-        thumbnailHeight: 80,
-        parallelUploads: 20,
-        previewTemplate: previewTemplate,
-        autoQueue: false, // Make sure the files aren't queued until manually added
-        previewsContainer: "#previews", // Define the container to display the previews
-        clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-      });
-
-      myDropzone.on("addedfile", function(file) {
-        // Hookup the start button
-        file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
-      });
-
-      // Update the total progress bar
-      myDropzone.on("totaluploadprogress", function(progress) {
-        document.querySelector(".progress-bar").style.width = progress + "%";
-      });
-
-      myDropzone.on("sending", function(file) {
-        // Show the total progress bar when upload starts
-        document.querySelector(".progress-bar").style.opacity = "1";
-        // And disable the start button
-        file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
-      });
-
-      // Hide the total progress bar when nothing's uploading anymore
-      myDropzone.on("queuecomplete", function(progress) {
-        document.querySelector(".progress-bar").style.opacity = "0";
-      });
-
-      // Setup the buttons for all transfers
-      // The "add files" button doesn't need to be setup because the config
-      // `clickable` has already been specified.
-      document.querySelector(".start").onclick = function() {
-        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-      };
-      document.querySelector(".cancel").onclick = function() {
-        myDropzone.removeAllFiles(true);
-      };
-      $(function(){
-        jQuery('#my-awesome-dropzone').attr('action','/php/contact.php');
-      });
-    </script>
         <!-- Loading Theme's Scripts -->
 
         <script src="js/scripts.js"></script>
