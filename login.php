@@ -94,7 +94,7 @@ if(isset($_POST['logout'])) {
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
 						<div class="text-center">
-							<div class="logo"><img alt="img" width="150" src="images/logo-dark.png"></div>
+							<div class="logo"><img alt="img" width="150" src="images/bumpy_logo.jpeg"></div>
 							<div class="tab-theme">
 								<div class="tab-content">
 									<div id="tab1" class="tab-pane active">
@@ -115,10 +115,11 @@ if(isset($_POST['logout'])) {
 																	<label class="sr-only">Password</label>
 																	<input type="password" class="form-control" name="password" id="lg_password" placeholder="Password">
 																</div>
-																<div class="form-group form-group-remember no-margin no-padding login-group-checkbox">
-																	<input type="checkbox" id="lg_remember" name="lg_remember">
+																<!-- <div class="form-group form-group-remember no-margin no-padding login-group-checkbox"> -->
+																	<!-- <input type="checkbox" id="lg_remember" name="lg_remember"> -->
 																	<!-- <label for="lg_remember">Remember</label> -->
-																</div>
+																<!-- </div> -->
+
 															</div>
 															<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 														</div>

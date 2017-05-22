@@ -4,6 +4,9 @@ session_start();
 if(!isset($_SESSION['admin_login'])){
 	header('Location:login.php');
 }
+if(isset($_POST['logout'])) {
+        unset($_SESSION['admin_login']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -114,14 +117,20 @@ if(!isset($_SESSION['admin_login'])){
                                 </ul><!-- End of Left Aligned Icons -->
 
 								<!-- Right Aligned Icons -->
-
+                <form action="<?= $_SERVER['PHP_SELF']?>" method="POST">
                 <ul class="nav navbar-nav navbar-right">
                   <!-- Logout Button -->
-                  <li>
-                    <a href="#"><i class="logout-icon pe-7s-power"></i></a>
-                  </li><!-- End of Logout Button -->
-                </ul><!-- End of Right Aligned Icons -->
+                  <!-- <li> -->
+                    <!-- <a  name="logout" type="submit"><i class="logout-icon pe-7s-power"></i></a> -->
+                  <!-- </li>End of Logout Button -->
 
+
+                  <input type="hidden" name="logout">
+                  <button type="submit" class=" btn btn-primary logout-icon pe-7s-power">Logout</button>
+
+
+                </ul><!-- End of Right Aligned Icons -->
+              </form>
                             </div>
                         </div>
                     </div>
