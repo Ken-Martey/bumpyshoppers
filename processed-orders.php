@@ -13,7 +13,7 @@
 
 		<!-- Favicon -->
 
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="bumpy.ico" type="image/x-icon">
 
 		<!-- Loading Google Fonts -->
 
