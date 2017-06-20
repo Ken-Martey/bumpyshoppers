@@ -244,6 +244,7 @@ if(!isset($_SESSION['admin_login'])){
 
                     <label class="control-label">Original price</label>
                     <input type="number" class="form-control"  id="origPrice" />
+                    <input type="number" hidden class="form-control"  id="on_offer" />
 
                       <label class="control-label">Image</label>
                     <input type="file" class="form-control"  id="image_url" />
@@ -303,7 +304,6 @@ function setImage() {
 }
 
 	var file = document.querySelector('#image_url').files[0];
-	console.log("file", file);
 	getBase64(file); // prints the base64 string
 
 
@@ -314,14 +314,13 @@ document.getElementById("image_url").addEventListener("change", setImage);
 
 
 	function addProduct(event) {
-		event.preventDefault();
 		var data = {};
 		var keys = ['orders_category_id', 'name', 'long_desc',
 		 'short_desc', 'clubPrice', 'origPrice', 'image', 'on_offer'];
 
 		for(var i= 0; i < keys.length; i++) {
+			console.log(document.getElementById(keys[i]), keys[i]);
 			data[keys[i]] = document.getElementById(keys[i]).value;
-      console.log(data);
 		}
 		SDK.addData('orders', 'stock', data, function(resp){
 			if(resp.status_code == 609 )
