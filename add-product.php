@@ -221,7 +221,7 @@ if(!isset($_SESSION['admin_login'])){
 							<div class="dv-notify-success alert alert-success">Product added successfully</div>
 							<div class="dv-notify-failed alert alert-danger">Product could not be added</div>
 							<h4 class="text-center">Add products to category</h4>
-							<p class="mar-bot-30 text-center">The folloring form outputs the validation errors in a tooltip</p>
+							<p class="mar-bot-30 text-center">The form allows adding of product</p>
 
 							<!-- Form with Tooltip Alerts -->
 
@@ -318,7 +318,7 @@ document.getElementById("image_url").addEventListener("change", setImage);
 
 		var keys = ['orders_category_id', 'name', 'long_desc',
 		 'short_desc', 'clubPrice', 'origPrice', 'image', 'on_offer'];
-		 $("#submit")[0].textContent = "...";
+		 $("#submit")[0].textContent = "Saving...";
 		for(var i= 0; i < keys.length; i++) {
 			console.log(document.getElementById(keys[i]), keys[i]);
 			data[keys[i]] = document.getElementById(keys[i]).value;

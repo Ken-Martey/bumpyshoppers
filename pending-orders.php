@@ -154,6 +154,14 @@ if(!isset($_SESSION['admin_login'])){
                     </ul>
                   </li>
                   <li class="with-dropdown">
+                    <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Sub categories<span class="dropdown-icon"></span></a>
+                    <ul class="menu-dropdown collapse">
+                      <li><a href="add-sub-category.php">Add sub categories</a></li>
+                      <li><a href="sub-category-list.php">List of sub categories</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="with-dropdown">
                     <a  class="menu-dropdown-link" data-toggle="collapse" aria-expanded="true" href="#"><i class="icon-browser"></i>Products <span class="dropdown-icon"></span></a>
                     <ul class="menu-dropdown collapse">
 

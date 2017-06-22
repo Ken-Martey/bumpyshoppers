@@ -230,7 +230,7 @@
 										  <td class="var-clubPrice">...</td>
 										  <td class="var-origPrice">...</td>
 										  <td class="var-category-name">...</td>
-                       <td><a class="btn btn-theme dv-update" data-toggle="modal" onclick="getId(event)" data-target="#modalForm"> Edit</a>
+                       <td><a href="update-product.php" class="btn btn-theme dv-update"> Edit</a>
                        <button class="dv-delete btn btn-danger">Delete</button>
                        </td>
 										</tr>
