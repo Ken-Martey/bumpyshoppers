@@ -249,7 +249,7 @@ if(!isset($_SESSION['admin_login'])){
                       <label class="control-label">Image</label>
                     <input type="file" class="form-control"  id="image_url" />
                     <br>
-                   				<button type="submit" onclick="addProduct(event)" class="btn btn-theme">Submit</button>
+                   				<button type="submit" onclick="addProduct(event)" class="btn btn-theme"><span id="submit">Submit</span></button>
 							</form><!-- End of Form with Tooltip Alerts -->
 						</div>
 					</div>
@@ -315,9 +315,10 @@ document.getElementById("image_url").addEventListener("change", setImage);
 
 	function addProduct(event) {
 		var data = {};
+
 		var keys = ['orders_category_id', 'name', 'long_desc',
 		 'short_desc', 'clubPrice', 'origPrice', 'image', 'on_offer'];
-
+		 $("#submit")[0].textContent = "...";
 		for(var i= 0; i < keys.length; i++) {
 			console.log(document.getElementById(keys[i]), keys[i]);
 			data[keys[i]] = document.getElementById(keys[i]).value;
@@ -328,9 +329,11 @@ document.getElementById("image_url").addEventListener("change", setImage);
 				for(var i= 0; i < keys.length; i++) {
 					 document.getElementById(keys[i]).value ="";
 				}
+					$("#submit")[0].textContent = "Submit";
 					document.getElementsByClassName('dv-notify-success')[0].style.display = 'block';
 					document.getElementsByClassName('dv-notify-success')[0].value = "Product added successfully";
 			} else {
+					$("#submit")[0].textContent = "Submit";
 					document.getElementsByClassName('dv-notify-failed')[0].style.display = 'block';
 					document.getElementsByClassName('dv-notify-failed')[0].value = "Product Could not be added";
 			}
