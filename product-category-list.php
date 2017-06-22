@@ -232,7 +232,8 @@ if(!isset($_SESSION['admin_login'])){
 										<tr>
 										  <th>Name</th>
 										  <th>Description</th>
-										  <th>Image</th>
+                      <th>Image</th>
+										  <th>Action</th>
 										</tr>
 									</thead>
 									<tbody class="dv-get-all:orders:category">
@@ -271,7 +272,7 @@ if(!isset($_SESSION['admin_login'])){
                                   <label class="control-label">Category Name</label>
                                   <input type="text" class="form-control"  name="name" placeholder="Please enter category name" />
                                   <label class="control-label" >Category Image</label>
-                                          <!-- <input type="file" class="form-control" name="image"> -->
+                                          <input type="file" class="form-control" name="image">
                                   <label class="control-label">Description</label>
                                   <textarea class="form-control" name="desc" id="cat_desc" rows="4" ></textarea>
 

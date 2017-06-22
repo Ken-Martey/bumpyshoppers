@@ -240,11 +240,11 @@ if(!isset($_SESSION['admin_login'])){
 										<label class="control-label">Long description</label>
                     <textarea class="form-control" id="long_desc" rows="4" ></textarea>
 										<label class="control-label">Club price</label>
-                    <input type="number" class="form-control"  id="clubPrice" />
+                    <input type="text" class="form-control"  id="clubPrice" />
 
                     <label class="control-label">Original price</label>
-                    <input type="number" class="form-control"  id="origPrice" />
-                    <input type="number" hidden class="form-control"  id="on_offer" />
+                    <input type="text" class="form-control"  id="origPrice" />
+                    <input type="hidden" class="form-control"  id="on_offer" />
 
                       <label class="control-label">Image</label>
                     <input type="file" class="form-control"  id="image_url" />
